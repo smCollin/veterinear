@@ -9,7 +9,6 @@ mongoose.connect(process.env.DB_URL)
   .catch(err => console.log(err));
 
 const app = express()
-const PORT = 3000;
 
 app.set("view engine", "ejs");
 
@@ -19,3 +18,8 @@ app.get("/", (req, res) => {
     res.render("index")
 })
 
+const PORT = process.env.PORT || 4000;
+
+app.listen(PORT, () => {
+  console.log(`Server running on port ${PORT}`);
+});
