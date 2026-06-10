@@ -1,6 +1,5 @@
 const express = require('express')
 const mongoose = require('mongoose')
-const nodemon = require('nodemon')
 require("dotenv").config();
 
 const registerRoutes = require('./routes/registerRoutes')
@@ -9,11 +8,10 @@ const registerRoutes = require('./routes/registerRoutes')
 mongoose.connect(process.env.DB_URL)
 const app = express()
 
-
 app.set("view engine", "ejs");
 
+app.use(express.urlencoded({ extended: true }));
 app.use(registerRoutes);
-
 
 
 app.get("/", (req, res) => {
